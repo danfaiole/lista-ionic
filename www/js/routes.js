@@ -46,7 +46,7 @@ angular.module('app.routes', [])
     }
   })
 
-$urlRouterProvider.otherwise('/menu/details')
+$urlRouterProvider.otherwise('/menu/contacts')
 
   
 
