@@ -7,12 +7,10 @@ angular.module('app.controllers', [])
 .controller('newContactCtrl', function($scope) {
   $scope.createContact = function(contact){
     var query = "insert into contato(name, email, phone) values ('"+contact.name+"', '"+contact.email+"', '"+contact.phone+"')";
-    //$scope.contact['name'] = '';
-    //console.log(query)
-    $cordovaSQLite.execute(db, query, []).then(function(res) {
-        console.log("INSERT ID -> " + res.insertId);
-    }, function (err) {
-        alert(err);
+    db.transaction(function (tx) {
+        tx.executeSql(query, [], function(tx, res) {
+          console.log('inseriu')
+        });
     });
   }
 })
@@ -20,15 +18,15 @@ angular.module('app.controllers', [])
 .controller('contactsCtrl', function($scope) {
   $scope.contacts = [];
 
-  $cordovaSQLite.execute(db, 'select name from contato', []).then(function(res) {
-    if (res.rows.length > 0) {
-      for (var i = 0; i < res.rows.length; i++) {
-        $scope.contacts.push(
-          {name: res.rows.item(i).name}
-        )
-      }
-    }
-  }, function (err) {
-    alert(err)
+  db.transaction(function (tx) {
+      tx.executeSql("select name from contato", [], function(tx, results) {
+          if(results.rows.length > 0) {
+              for(var i = 0; i < results.rows.length; i++) {
+                $scope.contacts.push(
+                  {name: results.rows.item(i).name}
+                )
+              }
+          }
+      });
   });
 })

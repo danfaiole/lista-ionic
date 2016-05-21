@@ -23,10 +23,13 @@ angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'a
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-      
-      db = $cordovaSQLite.openDB("my.db");
-      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS contato (id integer primary key, name text, email text, phone text)")
-      
-  }); 
-    
+
+      db = openDatabase("my.db", '1.0', "SQLDatabase", 2 * 1024 * 1024);
+      db.transaction(function (tx) {
+        tx.executeSql("CREATE TABLE IF NOT EXISTS contato (id integer primary key, name text, email text, phone text)");
+    });
+      //$cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS contato (id integer primary key, name text, email text, phone text)")
+
+  });
+
 })
