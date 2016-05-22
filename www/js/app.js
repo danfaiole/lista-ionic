@@ -6,7 +6,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 
-var db = null;
+var db;
 
 angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'app.services', 'app.directives'])
 
@@ -23,13 +23,10 @@ angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'a
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-
-      db = openDatabase("my.db", '1.0', "SQLDatabase", 2 * 1024 * 1024);
-      db.transaction(function (tx) {
-        tx.executeSql("CREATE TABLE IF NOT EXISTS contato (id integer primary key, name text, email text, phone text)");
-    });
-      //$cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS contato (id integer primary key, name text, email text, phone text)")
-
-  });
-
+      
+    db = $cordovaSQLite.openDB({ name: "my.db", location:"default"});
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS contatos (id INTEGER PRIMARY KEY, name TEXT, email TEXT, phone TEXT)");
+      
+  }); 
+    
 })
