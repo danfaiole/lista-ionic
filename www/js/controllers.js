@@ -1,23 +1,25 @@
 angular.module('app.controllers', [])
 
 .controller('contactDetailsCtrl', function($scope, $stateParams ) {
-  console.log($stateParams.id)
+  $scope.name = contacts[$stateParams.id].name
+  $scope.email = contacts[$stateParams.id].email
+  $scope.phone = contacts[$stateParams.id].phone
 })
 
 .controller('newContactCtrl', function($scope) {
-    /*$scope.name = "";
+    $scope.name = "";
     $scope.email = "";
     $scope.phone = "";
     $scope.insert = function() {
-    var query = "INSERT INTO contatos (name, email, phone) VALUES (?, ?, ?)";
-    $cordovaSQLite.execute(db, query, [$scope.name, $scope.email, $scope.phone]).then(function(result) {
-      console.log("INSERTED ---> " + result.insertId);
-    }, function(error) {
-      console.log(error);
-    })
-  }*/
+      id = contacts.length == undefined ? 1 : contacts.length + 1;
+      contacts[id] = {name: this.name, email: this.email, phone: this.phone, id: id}
+
+      this.name = "";
+      this.email = "";
+      this.phone = "";
+  }
 })
 
 .controller('contactsCtrl', function($scope) {
-  
+  $scope.contacts = contacts
 })
