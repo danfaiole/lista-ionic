@@ -3,11 +3,11 @@
         <form id="contacts-form3" class="list ">
             <label class="item item-input" name="search">
                 <i class="icon ion-search placeholder-icon"></i>
-                <input type="search" placeholder="Search">
+                <input type="search" placeholder="Search" ng-model="searchText">
             </label>
         </form>
         <ion-list>
-            <ion-item ng-repeat="contact in contacts" ui-sref="menu.contactDetails({id: {{contact.id}} })">
+            <ion-item ng-repeat="contact in contacts | filter:searchText" ui-sref="menu.contactDetails({id: {{contact.id}} })">
                 <i class="icon ion-ionic"></i>{{contact.name}}
             </ion-item>
         </ion-list>

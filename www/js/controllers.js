@@ -11,7 +11,7 @@ angular.module('app.controllers', [])
     $scope.email = "";
     $scope.phone = "";
     $scope.insert = function() {
-      id = contacts.length - 1;
+      id = contacts.length;
       contacts.push({name: this.name, email: this.email, phone: this.phone, id: id})
 
       this.name = "";
