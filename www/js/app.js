@@ -6,7 +6,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 
-var contacts = {}
+var contacts = []
 
 angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.services', 'app.directives'])
 
