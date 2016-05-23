@@ -1,12 +1,11 @@
 angular.module('app.controllers', [])
 
-.controller('contactDetailsCtrl', function($scope, $cordovaSQLite) {
-
-
+.controller('contactDetailsCtrl', function($scope, $stateParams ) {
+  console.log($stateParams.id)
 })
 
-.controller('newContactCtrl', function($scope, $cordovaSQLite) {
-    $scope.name = "";
+.controller('newContactCtrl', function($scope) {
+    /*$scope.name = "";
     $scope.email = "";
     $scope.phone = "";
     $scope.insert = function() {
@@ -16,18 +15,9 @@ angular.module('app.controllers', [])
     }, function(error) {
       console.log(error);
     })
-  }
+  }*/
 })
 
-.controller('contactsCtrl', function($scope, $cordovaSQLite) {
-  $scope.contacts = []
-  $cordovaSQLite.execute(db, 'select name from contatos', []).then(function(result) {
-    if (result.rows.length > 0) {
-      for(var i = 0; i < result.rows.length; i++) {
-        $scope.contacts.push(
-          {name: resuls.rows.item(i).name}
-        )
-      }
-    }
-  })
+.controller('contactsCtrl', function($scope) {
+  
 })

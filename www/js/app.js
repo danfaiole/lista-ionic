@@ -8,10 +8,10 @@
 
 var db;
 
-angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'app.services', 'app.directives'])
+angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.services', 'app.directives'])
 
 
-.run(function($ionicPlatform, $cordovaSQLite) {
+.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -23,10 +23,7 @@ angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'a
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-      
-    db = $cordovaSQLite.openDB({ name: "my.db", location:"default"});
-    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS contatos (id INTEGER PRIMARY KEY, name TEXT, email TEXT, phone TEXT)");
-      
-  }); 
     
+  });
+
 })

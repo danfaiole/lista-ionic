@@ -9,7 +9,7 @@
                 <i class="icon ion-ionic"></i>Item</ion-item> -->
         </form>
         <ion-list>
-            <ion-item ng-repeat="contact in contacts">
+            <ion-item ng-repeat="contact in contacts" ui-sref="menu.contactDetails({id: {{contact.id}} })">
                 <i class="icon ion-ionic"></i>{{contact.name}}
             </ion-item>
         </ion-list>
